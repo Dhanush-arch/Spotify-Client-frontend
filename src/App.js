@@ -12,29 +12,25 @@ function App() {
   const [{ token }, dispatch] = useStateValue();
 
   useEffect(() => {
-
-
     let _token;
+
+    //Persist Login
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      console.log(".....",loggedInUser)
       s.setAccessToken(loggedInUser);
       _token = loggedInUser;
-      console.log(_token);
-    } 
-    if(!_token)
-    {
+    }
+    if (!_token) {
       // Set token
       const hash = getTokenFromResponse();
       window.location.hash = "";
       _token = hash.access_token;
     }
-    console.log(_token);
 
     if (_token) {
       s.setAccessToken(_token);
-      
-      localStorage.setItem('user', _token);
+
+      localStorage.setItem("user", _token);
 
       dispatch({
         type: "SET_TOKEN",

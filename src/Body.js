@@ -67,8 +67,8 @@ function Body({ spotify }) {
             className="body__shuffle"
             onClick={playPlaylist}
           />
-          <FavoriteIcon fontSize="large" />
-          <MoreHorizIcon />
+          <FavoriteIcon fontSize="large" className="body__fav" />
+          <MoreHorizIcon className="body__more" />
         </div>
 
         {discover_weekly?.tracks.items.map((item) => (

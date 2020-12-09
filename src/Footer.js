@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
@@ -12,11 +12,9 @@ import "./Footer.css";
 import { Grid, Slider } from "@material-ui/core";
 
 function Footer({ spotify }) {
-  const [{ token, item, playing }, dispatch] = useStateValue();
-
+  const [{ item, playing, discover_weekly }, dispatch] = useStateValue();
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log(r);
 
       dispatch({
         type: "SET_PLAYING",
@@ -77,21 +75,37 @@ function Footer({ spotify }) {
   return (
     <div className="footer">
       <div className="footer__left">
-        <img
-          className="footer__albumLogo"
-          src={item?.album.images[0].url}
-          alt={item?.name}
-        />
         {item ? (
-          <div className="footer__songInfo">
-            <h4>{item.name}</h4>
-            <p>{item.artists.map((artist) => artist.name).join(", ")}</p>
-          </div>
+          <>
+            <img
+              className="footer__albumLogo"
+              src={item?.album.images[0].url}
+              alt={item?.name}
+            />
+            <div className="footer__songInfo">
+              <h4>{item.name}</h4>
+              <p>{item.artists.map((artist) => artist.name).join(", ")}</p>
+            </div>
+          </>
         ) : (
-          <div className="footer__songInfo">
-            <h4>No song is playing</h4>
-            <p>...</p>
-          </div>
+          <>
+            <img
+              className="footer__albumLogo"
+              src={
+                discover_weekly?.tracks?.items[0].track?.album?.images?.[0].url
+              }
+              alt={item?.name}
+            />
+            <div className="footer__songInfo">
+              <h4>
+                {discover_weekly?.tracks?.items[0].track?.album?.name.slice(
+                  0,
+                  30
+                )}
+              </h4>
+              <p>...</p>
+            </div>
+          </>
         )}
       </div>
 

@@ -24,11 +24,21 @@
   margin-left: 50px;
   margin-top: 20px;
   margin-bottom: 20px;
+  color: #1db954;
+}
+
+.body__fav {
+  color: #1db954;
 }
 
 .body__icons {
   display: flex;
   align-items: center;
+}
+
+.body__more {
+  color: white;
+  opacity: 0.6;
 }
 
 .body__icons > .MuiSvgIcon-root {

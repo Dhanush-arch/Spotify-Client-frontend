@@ -7,12 +7,6 @@
   color: white;
 }
 
-.songRow:hover {
-  cursor: pointer;
-  background-color: black;
-  opacity: 0.8;
-}
-
 .songRow__info {
   margin-left: 20px;
 }
@@ -30,4 +24,11 @@
 .songRow__album {
   height: 40px;
   width: 40px;
+}
+
+.songRow:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin-right: 60px;
 }

@@ -12,7 +12,7 @@ import "./Footer.css";
 import { Grid, Slider } from "@material-ui/core";
 
 function Footer({ spotify }) {
-  const [{ item, playing, discover_weekly }, dispatch] = useStateValue();
+  const [{ item, playing, discover_weekly, device }, dispatch] = useStateValue();
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
 
@@ -30,13 +30,13 @@ function Footer({ spotify }) {
 
   const handlePlayPause = () => {
     if (playing) {
-      spotify.pause();
+      spotify.pause({"device_id": device});
       dispatch({
         type: "SET_PLAYING",
         playing: false,
       });
     } else {
-      spotify.play();
+      spotify.play({"device_id": device});
       dispatch({
         type: "SET_PLAYING",
         playing: true,

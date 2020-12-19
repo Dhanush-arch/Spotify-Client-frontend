@@ -44,6 +44,13 @@ function App() {
         })
       );
 
+      s.getMyDevices().then((res) => {
+        dispatch({
+          type: "SET_DEVICE",
+          device: (res?.devices[0]?.is_active) ? res?.devices[0]?.id : null,
+        })
+      })
+
       s.getMyTopArtists().then((response) =>
         dispatch({
           type: "SET_TOP_ARTISTS",

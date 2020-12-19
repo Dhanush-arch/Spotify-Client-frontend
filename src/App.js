@@ -14,23 +14,12 @@ function App() {
   useEffect(() => {
     let _token;
 
-    //Persist Login
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      s.setAccessToken(loggedInUser);
-      _token = loggedInUser;
-    }
-    if (!_token) {
-      // Set token
-      const hash = getTokenFromResponse();
-      window.location.hash = "";
-      _token = hash.access_token;
-    }
-
+    const hash = getTokenFromResponse();
+    window.location.hash = "";
+    _token = hash.access_token;
+    s.setAccessToken(_token);
+  
     if (_token) {
-      s.setAccessToken(_token);
-
-      localStorage.setItem("user", _token);
 
       dispatch({
         type: "SET_TOKEN",
